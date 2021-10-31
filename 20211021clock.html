@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Martel:wght@200;300;400;600;700;800;900&family=Noto+Sans+TC:wght@100;300;400;500;700;900&display=swap"
+    rel="stylesheet">
+  <title>Document</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wall">
+      <div id="clock">
+        <div id="piont"></div>
+        <div id="circle">
+          <div class="num12">12</div>
+          <div class="num3">3</div>
+          <div class="num6">6</div>
+          <div class="num9">9</div>
+        </div>
+        <div id="hour"></div>
+        <div id="min"></div>
+        <div id="sec"></div>
+      </div>
+    </div>
+
+    <div id="floor"></div>
+
+    <div id="winLight">
+      <div class="box1"></div>
+      <div class="box1"></div>
+      <div class="box2"></div>
+      <div class="box2"></div>
+    </div>
+    <div id="roomlight"></div>
+    <div id="roomlight2"></div>
+
+  </div>
+
+  <script>
+    const hour = document.getElementById('hour')
+    const minute = document.getElementById('min')
+    const second = document.getElementById('sec')
+    const light = document.getElementById('winLight')
+    const roomlight = document.getElementById('roomlight')
+    const roomlight2 = document.getElementById('roomlight2')
+    const clock = document.getElementById('clock')
+
+
+
+    const updateClock = () => {
+      const now = new Date()
+      console.log(now.getSeconds())
+      hour.style.transform = `rotate(${30 * now.getHours() - 90}deg)`
+      minute.style.transform = `rotate(${6 * now.getMinutes() - 90}deg)`
+      second.style.transform = `rotate(${6 * now.getSeconds() - 90}deg)`
+
+      light.style.transform = `skew(-${now.getSeconds() + 5}deg, 0deg)`
+      light.style.top = `${1.1 * now.getSeconds() + 5}%`
+      light.style.right = `${1 * now.getSeconds() + 5}%`
+
+      roomlight.style.background = `rgba(0, 0, 0, ${0.004 * now.getSeconds()})`
+      roomlight2.style.background = `rgba(202, 44, 16, ${0.005 * now.getSeconds()})`
+      clock.style.boxShadow = `-6px ${0.16 * now.getSeconds() + 7}px 5px rgba(0, 0, 0, 0.4)`
+    }
+
+    updateClock()
+    setInterval(updateClock, 1000);
+  </script>
+</body>
+
+</html>
